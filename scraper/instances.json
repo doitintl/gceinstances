@@ -1,0 +1,488 @@
+[
+    {
+        "family": "Shared Core", 
+        "vCPU": 1, 
+        "instance_type": "f1-micro", 
+        "pricing": {
+            "eu": {
+                "windows": 0.033, 
+                "suse": 0.033, 
+                "rhel": 0.073, 
+                "linux": 0.013
+            }, 
+            "us": {
+                "windows": 0.032, 
+                "suse": 0.032, 
+                "rhel": 0.072, 
+                "linux": 0.012
+            }, 
+            "apac": {
+                "windows": 0.033, 
+                "suse": 0.033, 
+                "rhel": 0.073, 
+                "linux": 0.013
+            }
+        }, 
+        "memory": 0.6, 
+        "GECU": "Shared CPU"
+    }, 
+    {
+        "family": "Shared Core", 
+        "vCPU": 1, 
+        "instance_type": "g1-small", 
+        "pricing": {
+            "eu": {
+                "windows": 0.055, 
+                "suse": 0.055, 
+                "rhel": 0.095, 
+                "linux": 0.0347
+            }, 
+            "us": {
+                "windows": 0.052, 
+                "suse": 0.052, 
+                "rhel": 0.092, 
+                "linux": 0.032
+            }, 
+            "apac": {
+                "windows": 0.055, 
+                "suse": 0.055, 
+                "rhel": 0.095, 
+                "linux": 0.0347
+            }
+        }, 
+        "memory": 1.7, 
+        "GECU": 1.38
+    }, 
+    {
+        "family": "High CPU", 
+        "vCPU": 16, 
+        "instance_type": "n1-highcpu-16", 
+        "pricing": {
+            "eu": {
+                "windows": 1.328, 
+                "suse": 0.798, 
+                "rhel": 0.818, 
+                "linux": 0.688
+            }, 
+            "us": {
+                "windows": 1.28, 
+                "suse": 0.75, 
+                "rhel": 0.77, 
+                "linux": 0.64
+            }, 
+            "apac": {
+                "windows": 1.328, 
+                "suse": 0.798, 
+                "rhel": 0.818, 
+                "linux": 0.688
+            }
+        }, 
+        "memory": 14.4, 
+        "GECU": 44.0
+    }, 
+    {
+        "family": "High CPU", 
+        "vCPU": 2, 
+        "instance_type": "n1-highcpu-2", 
+        "pricing": {
+            "eu": {
+                "windows": 0.166, 
+                "suse": 0.196, 
+                "rhel": 0.146, 
+                "linux": 0.086
+            }, 
+            "us": {
+                "windows": 0.16, 
+                "suse": 0.19, 
+                "rhel": 0.14, 
+                "linux": 0.08
+            }, 
+            "apac": {
+                "windows": 0.166, 
+                "suse": 0.196, 
+                "rhel": 0.146, 
+                "linux": 0.086
+            }
+        }, 
+        "memory": 1.8, 
+        "GECU": 5.5
+    }, 
+    {
+        "family": "High CPU", 
+        "vCPU": 32, 
+        "instance_type": "n1-highcpu-32 Beta", 
+        "pricing": {
+            "eu": {
+                "windows": 2.656, 
+                "suse": 1.486, 
+                "rhel": 1.506, 
+                "linux": 1.376
+            }, 
+            "us": {
+                "windows": 2.56, 
+                "suse": 1.39, 
+                "rhel": 1.41, 
+                "linux": 1.28
+            }, 
+            "apac": {
+                "windows": 2.656, 
+                "suse": 1.486, 
+                "rhel": 1.506, 
+                "linux": 1.376
+            }
+        }, 
+        "memory": 28.8, 
+        "GECU": 88.0
+    }, 
+    {
+        "family": "High CPU", 
+        "vCPU": 4, 
+        "instance_type": "n1-highcpu-4", 
+        "pricing": {
+            "eu": {
+                "windows": 0.332, 
+                "suse": 0.282, 
+                "rhel": 0.232, 
+                "linux": 0.172
+            }, 
+            "us": {
+                "windows": 0.32, 
+                "suse": 0.27, 
+                "rhel": 0.22, 
+                "linux": 0.16
+            }, 
+            "apac": {
+                "windows": 0.332, 
+                "suse": 0.282, 
+                "rhel": 0.232, 
+                "linux": 0.172
+            }
+        }, 
+        "memory": 3.6, 
+        "GECU": 11.0
+    }, 
+    {
+        "family": "High CPU", 
+        "vCPU": 8, 
+        "instance_type": "n1-highcpu-8", 
+        "pricing": {
+            "eu": {
+                "windows": 0.664, 
+                "suse": 0.454, 
+                "rhel": 0.474, 
+                "linux": 0.344
+            }, 
+            "us": {
+                "windows": 0.64, 
+                "suse": 0.43, 
+                "rhel": 0.45, 
+                "linux": 0.32
+            }, 
+            "apac": {
+                "windows": 0.664, 
+                "suse": 0.454, 
+                "rhel": 0.474, 
+                "linux": 0.344
+            }
+        }, 
+        "memory": 7.2, 
+        "GECU": 22.0
+    }, 
+    {
+        "family": "High Memory", 
+        "vCPU": 16, 
+        "instance_type": "n1-highmem-16", 
+        "pricing": {
+            "eu": {
+                "windows": 1.936, 
+                "suse": 1.406, 
+                "rhel": 1.426, 
+                "linux": 1.296
+            }, 
+            "us": {
+                "windows": 1.824, 
+                "suse": 1.294, 
+                "rhel": 1.314, 
+                "linux": 1.184
+            }, 
+            "apac": {
+                "windows": 1.936, 
+                "suse": 1.406, 
+                "rhel": 1.426, 
+                "linux": 1.296
+            }
+        }, 
+        "memory": 104.0, 
+        "GECU": 44.0
+    }, 
+    {
+        "family": "High Memory", 
+        "vCPU": 2, 
+        "instance_type": "n1-highmem-2", 
+        "pricing": {
+            "eu": {
+                "windows": 0.242, 
+                "suse": 0.272, 
+                "rhel": 0.222, 
+                "linux": 0.162
+            }, 
+            "us": {
+                "windows": 0.228, 
+                "suse": 0.258, 
+                "rhel": 0.208, 
+                "linux": 0.148
+            }, 
+            "apac": {
+                "windows": 0.242, 
+                "suse": 0.272, 
+                "rhel": 0.222, 
+                "linux": 0.162
+            }
+        }, 
+        "memory": 13.0, 
+        "GECU": 5.5
+    }, 
+    {
+        "family": "High Memory", 
+        "vCPU": 32, 
+        "instance_type": "n1-highmem-32 Beta", 
+        "pricing": {
+            "eu": {
+                "windows": 3.872, 
+                "suse": 2.702, 
+                "rhel": 2.722, 
+                "linux": 2.592
+            }, 
+            "us": {
+                "windows": 3.648, 
+                "suse": 2.478, 
+                "rhel": 2.498, 
+                "linux": 2.368
+            }, 
+            "apac": {
+                "windows": 3.872, 
+                "suse": 2.702, 
+                "rhel": 2.722, 
+                "linux": 2.592
+            }
+        }, 
+        "memory": 208.0, 
+        "GECU": 88.0
+    }, 
+    {
+        "family": "High Memory", 
+        "vCPU": 4, 
+        "instance_type": "n1-highmem-4", 
+        "pricing": {
+            "eu": {
+                "windows": 0.484, 
+                "suse": 0.434, 
+                "rhel": 0.384, 
+                "linux": 0.324
+            }, 
+            "us": {
+                "windows": 0.456, 
+                "suse": 0.406, 
+                "rhel": 0.356, 
+                "linux": 0.296
+            }, 
+            "apac": {
+                "windows": 0.484, 
+                "suse": 0.434, 
+                "rhel": 0.384, 
+                "linux": 0.324
+            }
+        }, 
+        "memory": 26.0, 
+        "GECU": 11.0
+    }, 
+    {
+        "family": "High Memory", 
+        "vCPU": 8, 
+        "instance_type": "n1-highmem-8", 
+        "pricing": {
+            "eu": {
+                "windows": 0.968, 
+                "suse": 0.758, 
+                "rhel": 0.778, 
+                "linux": 0.648
+            }, 
+            "us": {
+                "windows": 0.912, 
+                "suse": 0.702, 
+                "rhel": 0.722, 
+                "linux": 0.592
+            }, 
+            "apac": {
+                "windows": 0.968, 
+                "suse": 0.758, 
+                "rhel": 0.778, 
+                "linux": 0.648
+            }
+        }, 
+        "memory": 52.0, 
+        "GECU": 22.0
+    }, 
+    {
+        "family": "Standard", 
+        "vCPU": 1, 
+        "instance_type": "n1-standard-1", 
+        "pricing": {
+            "eu": {
+                "windows": 0.109, 
+                "suse": 0.179, 
+                "rhel": 0.129, 
+                "linux": 0.069
+            }, 
+            "us": {
+                "windows": 0.103, 
+                "suse": 0.173, 
+                "rhel": 0.123, 
+                "linux": 0.063
+            }, 
+            "apac": {
+                "windows": 0.109, 
+                "suse": 0.179, 
+                "rhel": 0.129, 
+                "linux": 0.069
+            }
+        }, 
+        "memory": 3.75, 
+        "GECU": 2.75
+    }, 
+    {
+        "family": "Standard", 
+        "vCPU": 16, 
+        "instance_type": "n1-standard-16", 
+        "pricing": {
+            "eu": {
+                "windows": 1.744, 
+                "suse": 1.214, 
+                "rhel": 1.234, 
+                "linux": 1.104
+            }, 
+            "us": {
+                "windows": 1.648, 
+                "suse": 1.118, 
+                "rhel": 1.138, 
+                "linux": 1.008
+            }, 
+            "apac": {
+                "windows": 1.744, 
+                "suse": 1.214, 
+                "rhel": 1.234, 
+                "linux": 1.104
+            }
+        }, 
+        "memory": 60.0, 
+        "GECU": 44.0
+    }, 
+    {
+        "family": "Standard", 
+        "vCPU": 2, 
+        "instance_type": "n1-standard-2", 
+        "pricing": {
+            "eu": {
+                "windows": 0.218, 
+                "suse": 0.248, 
+                "rhel": 0.198, 
+                "linux": 0.138
+            }, 
+            "us": {
+                "windows": 0.206, 
+                "suse": 0.236, 
+                "rhel": 0.186, 
+                "linux": 0.126
+            }, 
+            "apac": {
+                "windows": 0.218, 
+                "suse": 0.248, 
+                "rhel": 0.198, 
+                "linux": 0.138
+            }
+        }, 
+        "memory": 7.5, 
+        "GECU": 5.5
+    }, 
+    {
+        "family": "Standard", 
+        "vCPU": 32, 
+        "instance_type": "n1-standard-32 Beta", 
+        "pricing": {
+            "eu": {
+                "windows": 3.488, 
+                "suse": 2.318, 
+                "rhel": 2.338, 
+                "linux": 2.208
+            }, 
+            "us": {
+                "windows": 3.296, 
+                "suse": 2.126, 
+                "rhel": 2.146, 
+                "linux": 2.016
+            }, 
+            "apac": {
+                "windows": 3.488, 
+                "suse": 2.318, 
+                "rhel": 2.338, 
+                "linux": 2.208
+            }
+        }, 
+        "memory": 120.0, 
+        "GECU": 88.0
+    }, 
+    {
+        "family": "Standard", 
+        "vCPU": 4, 
+        "instance_type": "n1-standard-4", 
+        "pricing": {
+            "eu": {
+                "windows": 0.436, 
+                "suse": 0.386, 
+                "rhel": 0.336, 
+                "linux": 0.276
+            }, 
+            "us": {
+                "windows": 0.412, 
+                "suse": 0.362, 
+                "rhel": 0.312, 
+                "linux": 0.252
+            }, 
+            "apac": {
+                "windows": 0.436, 
+                "suse": 0.386, 
+                "rhel": 0.336, 
+                "linux": 0.276
+            }
+        }, 
+        "memory": 15.0, 
+        "GECU": 11.0
+    }, 
+    {
+        "family": "Standard", 
+        "vCPU": 8, 
+        "instance_type": "n1-standard-8", 
+        "pricing": {
+            "eu": {
+                "windows": 0.872, 
+                "suse": 0.662, 
+                "rhel": 0.682, 
+                "linux": 0.552
+            }, 
+            "us": {
+                "windows": 0.824, 
+                "suse": 0.614, 
+                "rhel": 0.634, 
+                "linux": 0.504
+            }, 
+            "apac": {
+                "windows": 0.872, 
+                "suse": 0.662, 
+                "rhel": 0.682, 
+                "linux": 0.552
+            }
+        }, 
+        "memory": 30.0, 
+        "GECU": 22.0
+    }
+]
