@@ -1,3 +1,5 @@
+var current = "hourly";
+
 $(document).ready(function () {
     $.getJSON("scraper/instances.json", function (data) {
         $('#grid').dataTable({
@@ -133,4 +135,58 @@ $(document).ready(function () {
         return true;
     });
 
+    $('#cost-dropdown li a').click(function () {
+        var grid = $('#grid').DataTable();
+        var duration = $(this).data('duration');
+        $('#cost-dropdown').find('a span').text(duration);
+
+        switch (duration) {
+            case "hourly":
+            {
+                break;
+            }
+            case "daily":
+            {
+                if (current!="daily") {
+                    grid.rows().every(function () {
+                        var data = this.data();
+                        // Change US prices to Daily
+                        data.pricing.us.linux = (data.pricing.us.linux * 24).toFixed(3);
+                        data.pricing.us.windows = (data.pricing.us.windows * 24).toFixed(3);
+                        data.pricing.us.rhel = (data.pricing.us.rhel * 24).toFixed(3);
+                        data.pricing.us.suse = (data.pricing.us.suse * 24).toFixed(3);
+
+                        // Change EU prices to Daily
+                        data.pricing.eu.linux = (data.pricing.eu.linux * 24).toFixed(3);
+                        data.pricing.eu.windows = (data.pricing.eu.windows * 24).toFixed(3);
+                        data.pricing.eu.rhel = (data.pricing.eu.rhel * 24).toFixed(3);
+                        data.pricing.eu.suse = (data.pricing.eu.suse * 24).toFixed(3);
+
+                        // Change AP prices to Daily
+                        data.pricing.apac.linux = (data.pricing.apac.linux * 24).toFixed(3);
+                        data.pricing.apac.windows = (data.pricing.apac.windows * 24).toFixed(3);
+                        data.pricing.apac.rhel = (data.pricing.apac.rhel * 24).toFixed(3);
+                        data.pricing.apac.suse = (data.pricing.apac.suse * 24).toFixed(3);
+
+                        this.invalidate();
+                        current = "daily";
+                    });
+                    grid.draw();
+                    break;
+                }
+            }
+            case "weekly":
+            {
+                break;
+            }
+            case "monthly":
+            {
+                break;
+            }
+            case "annually":
+            {
+                break;
+            }
+        }
+    });
 });

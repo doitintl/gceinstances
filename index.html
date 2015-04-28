@@ -47,16 +47,28 @@
 
     <div class="btn-group" id="cost-dropdown">
         <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
-            Cost: <span class="text">Hourly</span>
+            Cost: <span class="text">hourly</span>
         </a>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="javascript:;" duration="hourly">Hourly</a></li>
-            <li><a href="javascript:;" duration="daily">Daily</a></li>
-            <li><a href="javascript:;" duration="weekly">Weekly</a></li>
-            <li><a href="javascript:;" duration="monthly">Monthly</a></li>
-            <li><a href="javascript:;" duration="annually">Annually</a></li>
+            <li><a href="javascript:;" id="hourly" data-duration="hourly">hourly</a></li>
+            <li><a href="javascript:;" id="daily" data-duration="daily">daily</a></li>
+            <li><a href="javascript:;" data-duration="weekly">weekly</a></li>
+            <li><a href="javascript:;" data-duration="monthly">monthly</a></li>
+            <li><a href="javascript:;" data-duration="annually">annually</a></li>
         </ul>
     </div>
+
+    <div class="btn-group" id="sustained-dropdown">
+        <a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            Sustained: <span class="text">none</span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="javascript:;" data-sustained="none">none</a></li>
+            <li><a href="javascript:;" data-sustained="typical">typical</a></li>
+            <li><a href="javascript:;" data-sustained="full">full</a></li>
+        </ul>
+    </div>
+
 
     <table id="grid" class="table table-hover table-condensed" cellspacing="0" width="100%">
         <thead>
