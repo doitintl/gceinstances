@@ -43,14 +43,14 @@ def update_by_core(virtual_cores, price, image, data):
 def main():
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
     opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-    response = opener.open('https://cloud.google.com/pricing', None, timeout=60).read()
+    response = opener.open('https://cloud.google.com/compute/pricing', None, timeout=60).read()
     doc = html.document_fromstring(response)
-    us_table = doc.xpath(".//header[text()='US hosted']/following-sibling::*/table/.//th[contains(text(), 'Instance type')]/parent::*/parent::*")
-    us_families = doc.xpath(".//header[text()='US hosted']/following-sibling::*/.//h3/text()")
-    eu_table = doc.xpath(".//header[text()='Europe/APAC hosted']/following-sibling::table/.//th[contains(text(), 'Instance type')]/parent::*/parent::*")
-    eu_families = doc.xpath(".//header[text()='Europe/APAC hosted']/following-sibling::*/.//h3/text()")
-    apac_table = doc.xpath(".//header[text()='Europe/APAC hosted']/following-sibling::table/.//th[contains(text(), 'Instance type')]/parent::*/parent::*")
-    apac_families = doc.xpath(".//header[text()='Europe/APAC hosted']/following-sibling::*/.//h3/text()")
+    us_table = doc.xpath(".//h3[text()='US']//following-sibling::table/.//th[contains(text(), 'Machine type')]/parent::*/parent::*")
+    us_families = doc.xpath(".//h3[text()='US']/following-sibling::h4/text()")
+    eu_table = doc.xpath(".//h3[text()='Europe / Asia']//following-sibling::table/.//th[contains(text(), 'Machine type')]/parent::*/parent::*")
+    eu_families = doc.xpath(".//h3[text()='Europe / Asia']/following-sibling::h4/text()")
+    apac_table = doc.xpath(".//h3[text()='Europe / Asia']//following-sibling::table/.//th[contains(text(), 'Machine type')]/parent::*/parent::*")
+    apac_families = doc.xpath(".//h3[text()='Europe / Asia']/following-sibling::h4/text()")
     D = {'us' : (us_table, us_families),
     'eu' : (eu_table, eu_families),
     'apac' : (apac_table, apac_families)}
@@ -74,20 +74,27 @@ def main():
                     except ValueError:
                         pass
                     try:
+                        l[-2]=float(l[-2].replace('$', ''))
+                    except ValueError:
+                        pass
+                    try:
                         l[-1]=float(l[-1].replace('$', ''))
                     except ValueError:
                         pass
-                    if l[0] in data.keys():
-                        data[l[0]]["pricing"][k] = {"linux" : l[-1],\
-                        "windows" : l[-1],"rhel" : l[-1],"suse" : l[-1]}
-                    else:
-                        data[l[0]] = {"family": family, "vCPU": int(l[1]), "memory": l[2],
-                        "instance_type": l[0], "GECU": l[3],
-                        "pricing": {k : {"linux": l[-1],"windows": l[-1],\
-                        "rhel": l[-1],"suse": l[-1]}}}
 
-    response = opener.open('https://cloud.google.com/compute/pricing#premiumoperatingsystems', None, timeout=60).read()
-    doc = html.document_fromstring(response)
+                    if ' ' in l[0]: # We should omit the remarks Google are putting on it - in our case it's '6' which is not necessary.
+                        l[0]=' '.join([x for x in l[0].split(' ') \
+                        if x not in [str(i) for i in range(1, 20)]]).\
+                        replace('( ', '(').replace(' )', ')').replace('  ', ' ') # Regarding the 'Beta' - it would be better if we could get rid of double spacing (in our json it's appears as '( Beta )'.
+                    if l[0] in data.keys():
+                        data[l[0]]["pricing"][k] = {"linux" : l[-2],\
+                        "windows" : l[-2],"rhel" : l[-2],"suse" : l[-2], "preemptible":l[-1]}
+                    else:
+                        data[l[0]] = {"family": family, "vCPU": int(l[1]), "memory": l[2],\
+                        "instance_type": l[0], "GECU": l[3],\
+                        "pricing": {k : {"linux": l[-2],"windows": l[-2],\
+                        "rhel": l[-2],"suse": l[-2], "preemptible":l[-1]}}}
+
     suse = doc.xpath(".//h3[text()='SUSE images']/following-sibling::ul[1]/li")
     for s in suse:
         row = [x.strip().replace('\n', '') for x in s.xpath(".//text()") if len(x.strip())>0]
@@ -105,9 +112,9 @@ def main():
         row = [x.strip().replace('\n', '') for x in r.xpath(".//text()") if len(x.strip())>0]
         price = row[0]
         clause = ' '.join(row[1:])
-        if clause == 'for instance types with less than 8 virtual    cores':
+        if clause == 'for machine types with less than 8 virtual    CPUs':
             data = update_by_core([1, 2, 4], price, 'rhel', data)
-        elif clause == 'for instance types with 8 virtual cores or    more':
+        elif clause == 'for machine types with 8 virtual CPUs or    more':
             data = update_by_core([8, 16, 32], price, 'rhel', data)
         else: raise ValueError("Unknown clause: '%s'" % clause)
 
@@ -134,6 +141,3 @@ if __name__ == '__main__':
     except:
         traceback.print_exc(file = open("error.txt","w"))
         traceback.print_exc()
-
-
-
