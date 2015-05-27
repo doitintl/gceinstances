@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#       Autor   Roman <romis@wippies.fi>
+#       Vadim Solovey <vadim@doit-intl.com>
 import json
 import urllib2
 import cookielib
