@@ -2,7 +2,7 @@
 Inspired by ec2instances.info, this is a summary page for Google Compute Engine instances
 
 # Implementation
-The grid can be presented by AngularJS using either ng-table.com, ui-grid.info or smartTable lorenzofox3.github.io components.
+The grid can be presented by AngularJS using either ng-table.com, ui-grid.info or smartTable (lorenzofox3.github.io) components.
 
 The client code will read (using $http) the scraper/instances.json file and present as it a grid to the end-user
 
