@@ -25,3 +25,12 @@ Grid columns should include the following fields from json file:
  - suse cost (according to selected region)
  - rhel cost (according to selected region)
  - preemptible cost (according to selected region)
+ - 
+ 
+Visual Design
+The visual design should follow Google Material Design (http://www.google.com/design/spec/material-design/introduction.html)
+
+Layout:
+ - Top Navigation Bar
+ - Left Sidebar
+ - Main Area
