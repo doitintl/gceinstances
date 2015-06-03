@@ -2,55 +2,70 @@
 <html ng-app="app">
 <head lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>GCEinstances.info</title>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="gceInstances.css">
-
-
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
-
     <script type="text/javascript" src="js/gceInstances.js"></script>
-
 </head>
 <body ng-controller="Controller">
 
-
-    <div layout="row" id="filterBar">
-        <span class="selectLabel">Region:</span>
-        <md-select placeholder="Region" ng-model="regionFilter" ng-change="filterData();">
-            <md-option ng-value="region" ng-repeat="region in regions">{{region}}</md-option>
-        </md-select>
-        <span class="selectLabel">Family:</span>
-        <md-select placeholder="Family" ng-model="familyFilter" ng-change="filterData();">
-            <md-option ng-value="'--'">--</md-option>
-            <md-option ng-value="family" ng-repeat="family in families">{{family}}</md-option>
-        </md-select>
-        <span class="selectLabel">Cost:</span>
-        <md-select placeholder="Cost" ng-model="costFilter" ng-change="filterData();">
-            <md-option ng-value="cost.name" ng-repeat="cost in costs">{{cost.name}}</md-option>
-        </md-select>
-        <md-input-container flex>
-            <label>Search...</label>
-            <input ng-model="searchText">
-        </md-input-container>
+<md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools">
+        <h3>
+            <span>GCEinstances.info</span>
+        </h3>
     </div>
+</md-toolbar>
 
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-content layout-padding>
+        </md-content>
+        <md-content layout-padding layout="column" layout-sm="column">
+            <form name="filters">
+                <div layout="column" id="filterBar">
+                    <span class="selectLabel">Region:</span>
+                    <md-select placeholder="Region" ng-model="regionFilter" ng-change="filterData();">
+                        <md-option ng-value="region" ng-repeat="region in regions">{{region}}</md-option>
+                    </md-select>
+                    <span class="selectLabel">Family:</span>
+                    <md-select placeholder="Family" ng-model="familyFilter" ng-change="filterData();">
+                        <!--<md-option ng-value="'--'">--</md-option>-->
+                        <md-option ng-value="family" ng-repeat="family in families">{{family}}</md-option>
+                    </md-select>
+                    <span class="selectLabel">Cost:</span>
+                    <md-select placeholder="Cost" ng-model="costFilter" ng-change="filterData();">
+                        <md-option ng-value="cost.name" ng-repeat="cost in costs">{{cost.name}}</md-option>
+                    </md-select>
+                    <md-input-container>
+                        <label>Search...</label>
+                        <input ng-model="searchText">
+                    </md-input-container>
+                </div>
+            </form>
+        </md-content>
 
-    <div class="table-responsive-vertical shadow-z-1">
-        <!-- Table starts here -->
-        <table id="table" class="table table-hover table-mc-light-blue">
-            <thead >
-            <tr >
-                <th ng-repeat="(col, columnHead) in head" ng-click="changeSorting(col);orderByFunc(col);">{{columnHead}}&nbsp;<i class="fa" ng-show="showArrow[col]" ng-class="sortOrder"></i></th>
-            </tr>
-            </thead>
-            <tbody>
+    </md-sidenav>
+
+    <md-content style="padding:25px">
+        <div class="table-responsive-vertical shadow-z-1">
+            <!-- Table starts here -->
+            <table id="table" class="table table-mc-light-blue">
+                <thead>
+                <tr>
+                    <th ng-repeat="(col, columnHead) in head" ng-click="changeSorting(col);orderByFunc(col);">
+                        {{columnHead}}&nbsp;<i
+                            class="fa" ng-show="showArrow[col]" ng-class="sortOrder"></i></th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr ng-repeat="row in filteredData | filter:searchText">
                     <td>{{row.instance_type}}</td>
                     <td>{{row.family}}</td>
@@ -63,9 +78,10 @@
                     <td>${{row.rhel}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
                     <td>${{row.preemptible}}&nbsp<span class='md-caption'>{{costFilter}}</span></td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    </md-content>
 
 
 </body>

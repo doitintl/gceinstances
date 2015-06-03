@@ -114,8 +114,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
         });
     }
 
-
-    $http.get('instances.json').success (function(data){
+    $http.get('scraper/instances.json').success (function(data){
 
         $scope.allData = data;
 
