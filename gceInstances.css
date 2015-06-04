@@ -7,7 +7,7 @@ md-select {
 }
 
 .selectLabel {
-    padding-top:6px;
+
     margin-right:3px;
     height:30px;
     color:#9E9E9E;
@@ -19,6 +19,18 @@ md-select {
 
 md-input-container {
     padding-bottom:1px;
+}
+
+md-content {
+    padding:25px;
+}
+
+.activeColumn {
+    color: #999999;
+}
+
+.passiveColumn {
+    color: #ffffff;
 }
 
 /* -- import Roboto Font ---------------------------- */
@@ -46,7 +58,7 @@ body {
 html {
     position: relative;
     overflow-x: hidden;
-    margin: 16px;
+
     padding: 0;
     min-height: 100%;
     font-size: 62.5%;
@@ -59,6 +71,7 @@ body {
     line-height: 2rem;
     letter-spacing: 0.01rem;
     color: #212121;
+    margin: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -95,21 +108,22 @@ body {
     width: 100%;
     max-width: 100%;
     margin-bottom: 2rem;
-    background-color: #fafafa;
+    background-color: #ffffff;
 }
-.table > thead > tr,
-.table > tbody > tr,
-.table > tfoot > tr {
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
+/*.table > thead > tr,*/
+/*.table > tbody > tr,*/
+/*.table > tfoot > tr {*/
+    /*-webkit-transition: all 0.3s ease;*/
+    /*-o-transition: all 0.3s ease;*/
+    /*transition: all 0.3s ease;*/
+/*}*/
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
+    color:#333333;
     text-align: left;
     padding: 1.6rem;
     vertical-align: top;
@@ -119,13 +133,12 @@ body {
     transition: all 0.3s ease;
 }
 .table > thead > tr > th {
-    font-weight: 400;
-    color: #fffde7;
+    font-weight: 100;
     vertical-align: bottom;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    font-weight:bold;
-    background-color: #9E9E9E;
     cursor:pointer;
+    color:#999999;
+    overflow: hidden;
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -153,7 +166,7 @@ body {
     padding: 0.8rem;
 }
 .table-bordered {
-    border: 0;
+    border: none;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -161,9 +174,15 @@ body {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-    border: 0;
-    border-bottom: 1px solid #e0e0e0;
+    border: none;
 }
+
+.table-bordered > thead > tr,
+.table-bordered > tbody > tr,
+.table-bordered > tfoot > tr {
+    border-top: 1px solid #e0e0e0;
+}
+
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
     border-bottom-width: 2px;
@@ -395,6 +414,12 @@ body {
 .table-hover.table-mc-light-blue > tbody > tr:hover > th {
     background-color: #b3e5fc;
 }
+
+.table-hover.table-mc-white > tbody > tr:hover > td,
+.table-hover.table-mc-white > tbody > tr:hover > th {
+    background-color: #fafafa;
+}
+
 @media screen and (max-width: 767px) {
     .table-responsive-vertical .table-striped.table-mc-light-blue > tbody > tr > td,
     .table-responsive-vertical .table-striped.table-mc-light-blue > tbody > tr:nth-child(odd) {
