@@ -56,34 +56,38 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
 
     $scope.filterData = function() {
 
-        //$scope.filteredData = [];
         var allDataTemp = angular.copy($scope.allData);
         filteredDataTemp = [];
 
         angular.forEach(allDataTemp, function(instance, i) {
+
             if (instance.family === $scope.familyFilter || $scope.familyFilter == $scope.families[0]) {
+
                 var filteredPricing = {};
+
                 angular.forEach(instance.pricing, function(obj, iRegion) {
+
                     if (iRegion === $scope.regionFilter) {
+
                         angular.copy(obj, filteredPricing);
+
                         if ($scope.costFilter !== undefined) {
+
                             var mult = 1;
                             angular.forEach($scope.costs, function(cost, i) {
                                 if (cost.name === $scope.costFilter) { mult = cost.mult; }
                             });
                             angular.forEach(filteredPricing, function(price, os) {
-                                //filteredPricing[os] = $filter('number')(filteredPricing[os]*mult, 3);
                                 instance[os] = parseFloat($filter('number')(filteredPricing[os]*mult, 3));
                             });
                         }
                     }
                 });
-                //instance.currPricing = filteredPricing;
                 instance.pricing = {};
                 filteredDataTemp = filteredDataTemp.concat(instance);
             }
         });
-        //$scope.filteredData = [];
+
         $scope.filteredData = filteredDataTemp;
 
         $scope.sortChanged = false;
@@ -93,7 +97,9 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
     }
 
     $scope.selectedCls = function(column) {
+
         return column == scope.sort.column && 'sort-' + scope.sort.descending;
+
     }
 
     $scope.changeSorting = function(column) {
@@ -104,8 +110,17 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
             sort.column = column;
             sort.descending = false;
         }
-        if (sort.descending === false) { $scope.sortOrder[column] = 'fa-angle-double-up'; }
-        else { $scope.sortOrder[column] = 'fa-angle-double-down'; }
+
+        angular.forEach($scope.head, function (name, column) {
+            if (column === $scope.sort.column) {
+                if (sort.descending === false) { $scope.sortOrder[column] = 'fa-angle-double-up activeColumn'; }
+                else { $scope.sortOrder[column] = 'fa-angle-double-down activeColumn'; }
+            } else {
+                // if column is passive we don't care about sorting order
+                // still an arrow is there (hidden) to prevent column from width changing
+                $scope.sortOrder[column] = 'fa-angle-double-up passiveColumn';
+            }
+        });
     };
 
     $scope.orderByFunc = function(column) {
@@ -116,15 +131,6 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
 
         $scope.filteredData = $filter('orderBy')($scope.filteredData, column, $scope.sort.descending);
 
-        angular.forEach($scope.head, function(name, column) {
-
-            if (column === $scope.sort.column) {
-                $scope.sortOrder[column] += ' activeColumn';
-            } else {
-                $scope.sortOrder[column] += ' passiveColumn';
-            }
-        });
-        console.log($scope.sortOrder);
     }
 
     $http.get('scraper/instances.json').success (function(data){
