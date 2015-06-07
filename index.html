@@ -16,18 +16,22 @@
 </head>
 <body ng-controller="Controller">
 
-<md-toolbar md-scroll-shrink>
-    <div class="md-toolbar-tools">
-        <h3>
-            <span>GCEinstances.info</span>
-        </h3>
-    </div>
-</md-toolbar>
 
-<section id="allContent" layout="row" flex>
+
+<section id="allContent" layout="row">
+
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">
+                <h3>
+                    <span></span>
+                </h3>
+            </div>
+        </md-toolbar>
+
         <md-content layout-padding>
         </md-content>
+
         <md-content layout-padding layout="column" layout-sm="column">
             <!--<form name="filters">-->
                 <div layout="column" id="filterBar">
@@ -52,34 +56,44 @@
         </md-content>
     </md-sidenav>
 
-    <md-content flex id="data">
-        <div class="table-responsive-vertical shadow-z-1">
-            <!-- Table starts here -->
-            <table id="table" class="table table-mc-white table-hover table-bordered">
-                <thead>
-                <tr>
-                    <th ng-repeat="(col, columnHead) in head" ng-click="orderByFunc(col);">
-                        {{columnHead}}&nbsp;<i class="fa" ng-class="sortOrder[col]"></i>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in filteredData | filter:searchText">
-                        <td>{{row.instance_type}}</td>
-                        <td>{{row.family}}</td>
-                        <td>{{row.vCPU}}</td>
-                        <td>{{row.memory}}</td>
-                        <td>{{row.GECU}}</td>
-                        <td>${{row.linux}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                        <td>${{row.windows}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                        <td>${{row.suse}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                        <td>${{row.rhel}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                        <td>${{row.preemptible}}&nbsp<span class='md-caption'>{{costFilter}}</span></td>
+    <section layout="column" flex>
+        <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">
+                <h3>
+                    <span>GCEinstances.info</span>
+                </h3>
+            </div>
+        </md-toolbar>
+
+        <md-content id="data">
+            <div class="table-responsive-vertical shadow-z-1">
+                <!-- Table starts here -->
+                <table id="table" class="table table-mc-white table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="(col, columnHead) in head" ng-click="orderByFunc(col);">
+                            {{columnHead}}&nbsp;<i class="fa" ng-class="sortOrder[col]"></i>
+                        </th>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-    </md-content>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in filteredData | filter:searchText">
+                            <td>{{row.instance_type}}</td>
+                            <td>{{row.family}}</td>
+                            <td>{{row.vCPU}}</td>
+                            <td>{{row.memory}}</td>
+                            <td>{{row.GECU}}</td>
+                            <td>${{row.linux}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td>${{row.windows}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td>${{row.suse}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td>${{row.rhel}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td>${{row.preemptible}}&nbsp<span class='md-caption'>{{costFilter}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </md-content>
+    </section>
 </section>
 
 </body>
