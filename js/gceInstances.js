@@ -36,8 +36,10 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
 
     $scope.sort = {
         column: 'instance_type',
-        descending: true
+        descending: false
     };
+
+    $scope.sortChanged = false;
 
     $scope.sortOrder = [];
 
@@ -45,10 +47,10 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
 
         angular.forEach($scope.allData, function(instance, i) {
             angular.forEach(instance.pricing, function(price, region) {
-                if ($scope.regions.indexOf(region) == -1) { $scope.regions = $scope.regions.concat(region); }
+                if ($scope.regions.indexOf(region) === -1) { $scope.regions = $scope.regions.concat(region); }
             });
 
-            if ($scope.families.indexOf(instance.family) == -1) { $scope.families = $scope.families.concat(instance.family); }
+            if ($scope.families.indexOf(instance.family) === -1) { $scope.families = $scope.families.concat(instance.family); }
         });
     }
 
@@ -59,15 +61,15 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
         filteredDataTemp = [];
 
         angular.forEach(allDataTemp, function(instance, i) {
-            if (instance.family == $scope.familyFilter || $scope.familyFilter == $scope.families[0]) {
+            if (instance.family === $scope.familyFilter || $scope.familyFilter == $scope.families[0]) {
                 var filteredPricing = {};
                 angular.forEach(instance.pricing, function(obj, iRegion) {
-                    if (iRegion == $scope.regionFilter) {
+                    if (iRegion === $scope.regionFilter) {
                         angular.copy(obj, filteredPricing);
-                        if ($scope.costFilter != undefined) {
+                        if ($scope.costFilter !== undefined) {
                             var mult = 1;
                             angular.forEach($scope.costs, function(cost, i) {
-                                if (cost.name == $scope.costFilter) { mult = cost.mult; }
+                                if (cost.name === $scope.costFilter) { mult = cost.mult; }
                             });
                             angular.forEach(filteredPricing, function(price, os) {
                                 //filteredPricing[os] = $filter('number')(filteredPricing[os]*mult, 3);
@@ -84,7 +86,9 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
         //$scope.filteredData = [];
         $scope.filteredData = filteredDataTemp;
 
+        $scope.sortChanged = false;
         $scope.orderByFunc($scope.sort.column);
+        $scope.sortChanged = true;
 
     }
 
@@ -94,7 +98,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
 
     $scope.changeSorting = function(column) {
         var sort = $scope.sort;
-        if (sort.column == column) {
+        if (sort.column === column) {
             sort.descending = !sort.descending;
         } else {
             sort.column = column;
@@ -106,7 +110,9 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
 
     $scope.orderByFunc = function(column) {
 
-        $scope.changeSorting(column);
+        if ($scope.sortChanged) {
+            $scope.changeSorting(column);
+        }
 
         $scope.filteredData = $filter('orderBy')($scope.filteredData, column, $scope.sort.descending);
 
