@@ -55,6 +55,8 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
     $scope.showColumn = false;
 
+    $scope.centerColomnHead = [];
+
     $scope.toggleSidenav = function() {
             $mdSidenav('left').toggle();
             //$scope.user = !$scope.user;
@@ -168,6 +170,10 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
                 $scope.sortOrder[column] += ' activeColumn';
             } else {
                 $scope.sortOrder[column] += ' passiveColumn';
+            }
+
+            if (column === 'vCPU' || column === 'memory' || column === 'GECU') {
+                $scope.centerColomnHead[column] = "centered";
             }
         });
 

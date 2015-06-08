@@ -32,9 +32,6 @@
             </div>
         </md-toolbar>
 
-        <md-content layout-padding>
-        </md-content>
-
         <md-content class="filters" layout="column" layout-sm="column">
             <!--<form name="filters">-->
                 <div layout="column" id="filterBar">
@@ -72,15 +69,15 @@
         </md-toolbar>
 
         <md-content id="data">
-            <div class="table-responsive-vertical shadow-z-1">
+            <div flex class="table-responsive-vertical shadow-z-1">
                 <!-- Table starts here -->
                 <table id="table" class="table table-mc-white table-hover table-bordered">
                     <thead>
                     <tr>
-                        <th hide show-gt-md ng-repeat="(col, columnHead) in head" ng-click="orderByFunc(col);">
+                        <th hide show-gt-md ng-class="centerColomnHead[col]" ng-repeat="(col, columnHead) in head" ng-click="orderByFunc(col);">
                             {{columnHead}}&nbsp;<i class="fa" ng-class="sortOrder[col]"></i>
                         </th>
-                        <th hide-gt-md ng-repeat="(col, columnHead) in headMobile" ng-click="orderByFunc(col);">
+                        <th hide-gt-md ng-class="centerColomnHead[col]" ng-repeat="(col, columnHead) in headMobile" ng-click="orderByFunc(col);">
                             {{columnHead}}&nbsp;<i class="fa" ng-class="sortOrder[col]"></i>
                         </th>
                     </tr>

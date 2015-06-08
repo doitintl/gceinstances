@@ -2,10 +2,6 @@
     padding-top:0;
 }
 
-md-select {
-    margin-right:30px;
-}
-
 .selectFilter {
     margin-top:30px;
 }
@@ -23,7 +19,13 @@ md-input-container {
 }
 
 md-content#data {
-    padding:25px 5px 25px 5px;
+    padding:25px 5px 25px 25px;
+    margin-bottom:0;
+}
+
+
+md-content {
+    margin:0;
 }
 
 .activeColumn {
@@ -34,8 +36,14 @@ md-content#data {
     color: #ffffff;
 }
 
-md-sidenav.md-locked-open, section#allContent {
+md-sidenav.md-locked-open {
     min-height:100%;
+    margin-bottom:-32px;
+}
+
+section#allContent {
+    min-height:100%;
+
 }
 
 .md-caption {
@@ -81,7 +89,7 @@ body {
     line-height: 2rem;
     letter-spacing: 0.01rem;
     color: #212121;
-    margin: 16px;
+    padding: 0 16px 0 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -144,12 +152,15 @@ body {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-.table > tbody > tr > td.centered {
+
+.table > tbody > tr > td.centered,
+.table > thead > tr > th.centered {
     text-align:center;
 }
 
-.table > thead > tr > th.hideMD {
-    display:none;
+.table > thead > tr > th.centered {
+    padding-left:1.45em;
+    padding-right:0.75em;
 }
 
 .table > thead > tr > th {
@@ -218,4 +229,11 @@ body {
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
     background-color: rgba(0, 0, 0, 0.12);
+}
+
+@media only screen and (max-width: 960px) {
+
+    md-content#data {
+        padding: 25px 5px 25px 5px;
+    }
 }
