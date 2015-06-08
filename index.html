@@ -22,9 +22,12 @@
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar md-scroll-shrink>
-            <div class="md-toolbar-tools">
+            <div class="md-toolbar-tools" hide-gt-md ng-show="user">
+                <md-button class="md-icon-button"  aria-label="Show Menu" ng-click="toggleSidenav()" >
+                    <md-icon md-svg-icon="images/menu.svg"></md-icon>
+                </md-button>
                 <h3>
-                    <span></span>
+                    <span>GCEinstances.info</span>
                 </h3>
             </div>
         </md-toolbar>
@@ -32,19 +35,19 @@
         <md-content layout-padding>
         </md-content>
 
-        <md-content layout-padding layout="column" layout-sm="column">
+        <md-content class="filters" layout="column" layout-sm="column">
             <!--<form name="filters">-->
                 <div layout="column" id="filterBar">
-                    <span class="selectLabel">Region:</span>
+                    <!--<span class="selectLabel">Region:</span>-->
                     <md-select placeholder="Region" ng-model="regionFilter" ng-change="filterData();">
                         <md-option ng-value="region" ng-repeat="region in regions">{{region}}</md-option>
                     </md-select>
-                    <span class="selectLabel">Family:</span>
-                    <md-select placeholder="Family" ng-model="familyFilter" ng-change="filterData();">
+                    <!--<span class="selectLabel">Family:</span>-->
+                    <md-select class="selectFilter" placeholder="Family" ng-model="familyFilter" ng-change="filterData();">
                         <md-option ng-value="family" ng-repeat="family in families">{{family}}</md-option>
                     </md-select>
-                    <span class="selectLabel">Cost:</span>
-                    <md-select placeholder="Cost" ng-model="costFilter" ng-change="filterData();">
+                    <!--<span class="selectLabel">Cost:</span>-->
+                    <md-select class="selectFilter" placeholder="Cost" ng-model="costFilter" ng-change="filterData();">
                         <md-option ng-value="cost.name" ng-repeat="cost in costs">{{cost.name}}</md-option>
                     </md-select>
                     <md-input-container>
@@ -59,6 +62,9 @@
     <section layout="column" flex>
         <md-toolbar md-scroll-shrink>
             <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" hide-gt-md aria-label="Show Menu" ng-click="toggleSidenav()" ng-show="user">
+                    <md-icon md-svg-icon="images/menu.svg"></md-icon>
+                </md-button>
                 <h3>
                     <span>GCEinstances.info</span>
                 </h3>
@@ -71,7 +77,10 @@
                 <table id="table" class="table table-mc-white table-hover table-bordered">
                     <thead>
                     <tr>
-                        <th ng-repeat="(col, columnHead) in head" ng-click="orderByFunc(col);">
+                        <th hide show-gt-md ng-repeat="(col, columnHead) in head" ng-click="orderByFunc(col);">
+                            {{columnHead}}&nbsp;<i class="fa" ng-class="sortOrder[col]"></i>
+                        </th>
+                        <th hide-gt-md ng-repeat="(col, columnHead) in headMobile" ng-click="orderByFunc(col);">
                             {{columnHead}}&nbsp;<i class="fa" ng-class="sortOrder[col]"></i>
                         </th>
                     </tr>
@@ -79,15 +88,15 @@
                     <tbody>
                         <tr ng-repeat="row in filteredData | filter:searchText">
                             <td>{{row.instance_type}}</td>
-                            <td>{{row.family}}</td>
-                            <td>{{row.vCPU}}</td>
-                            <td>{{row.memory}}</td>
-                            <td>{{row.GECU}}</td>
-                            <td>${{row.linux}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td hide show-gt-md>{{row.family}}</td>
+                            <td class="centered">{{row.vCPU}}</td>
+                            <td class="centered">{{row.memory}}</td>
+                            <td hide show-gt-md class="centered">{{row.GECU}}</td>
+                            <td>{{row.linux}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
                             <td>${{row.windows}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                            <td>${{row.suse}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                            <td>${{row.rhel}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
-                            <td>${{row.preemptible}}&nbsp<span class='md-caption'>{{costFilter}}</span></td>
+                            <td hide show-gt-md>${{row.suse}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td hide show-gt-md>${{row.rhel}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
+                            <td hide show-gt-md>${{row.preemptible}}&nbsp<span class='md-caption'>{{costFilter}}</span></td>
                         </tr>
                     </tbody>
                 </table>

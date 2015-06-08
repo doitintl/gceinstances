@@ -4,7 +4,7 @@
 
 var app = angular.module('app', ['ngMaterial']);
 
-app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filter', function ($scope, $http, $window, $location, $filter) {
+app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filter', function ($scope, $http, $window, $mdSidenav, $filter) {
 
     var filteredDataTemp;
 
@@ -14,23 +14,31 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
         "vCPU": "vCPU",
         "memory": "Memory",
         "GECU": "GECU",
-        "linux": "Linux Cost",
-        "windows": "Windows Cost",
-        "suse": "Suse Cost",
-        "rhel": "Rhel Cost",
-        "preemptible": "Preemptible Cost"
+        "linux": "Linux",
+        "windows": "Windows",
+        "suse": "SUSE",
+        "rhel": "RHEL",
+        "preemptible": "Preemptible"
     };
 
-    $scope.costs = [ {name:'hourly', 'mult': 1},
-        {name:'daily', 'mult': 24},
-        {name:'weekly', 'mult': 168},
-        {name:'monthly', 'mult': 732},
-        {name:'anually', 'mult': 8760}
+    $scope.headMobile = {
+        "instance_type": "Name",
+        "vCPU": "vCPU",
+        "memory": "Memory",
+        "linux": "Linux",
+        "windows": "Windows"
+    };
+
+    $scope.costs = [ {name:'Hourly', 'mult': 1},
+        {name:'Daily', 'mult': 24},
+        {name:'Weekly', 'mult': 168},
+        {name:'Monthly', 'mult': 732},
+        {name:'Anually', 'mult': 8760}
     ];
 
     $scope.regions = [];
 
-    $scope.families = ['--'];
+    $scope.families = ['All'];
 
     $scope.selRegion = 'us';
 
@@ -42,6 +50,15 @@ app.controller('Controller', ['$scope', '$http', '$window', '$location', '$filte
     $scope.sortChanged = false;
 
     $scope.sortOrder = [];
+
+    $scope.user = true;
+
+    $scope.showColumn = false;
+
+    $scope.toggleSidenav = function() {
+            $mdSidenav('left').toggle();
+            //$scope.user = !$scope.user;
+    }
 
     $scope.getAllRegionsNFamilies = function() {
 
