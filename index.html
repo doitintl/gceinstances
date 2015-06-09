@@ -12,13 +12,34 @@
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="bower_components/re-tree/re-tree.js"></script>
+    <script type="text/javascript" src="bower_components/ng-device-detector/ng-device-detector.js"></script>
     <script type="text/javascript" src="js/gceInstances.js"></script>
 </head>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-39701609-7', 'auto');
+    ga('send', 'pageview');
+</script>
+
 <body ng-controller="Controller">
 
+<!--<div hide show-gt-md ng-init="ismobile = 'false'">-->
+    <!--<div ng-if="!ismobile">-->
+        <!--<div ng-init="isMobile = 'true"></div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div hide-gt-md ng-show="user" ng-init="ismobile = 'true'">-->
+    <!--<div ng-if="ismobile">-->
+        <!--<div ng-init="isMobile = 'false'"></div>-->
+    <!--</div>-->
+<!--</div>-->
 
-
-<section id="allContent" layout="row">
+<section id="allContent" layout="row" device-detector>
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar md-scroll-shrink>
@@ -34,29 +55,54 @@
 
         <md-content class="filters" layout="column" layout-sm="column">
             <!--<form name="filters">-->
-                <div layout="column" id="filterBar">
-                    <!--<span class="selectLabel">Region:</span>-->
-                    <md-select placeholder="Region" ng-model="regionFilter" ng-change="filterDataNToggle();">
-                        <md-option ng-value="region" ng-repeat="region in regions">{{region}}</md-option>
-                    </md-select>
-                    <!--<span class="selectLabel">Family:</span>-->
-                    <md-select class="selectFilter" placeholder="Family" ng-model="familyFilter" ng-change="filterDataNToggle();">
-                        <md-option ng-value="family" ng-repeat="family in families">{{family}}</md-option>
-                    </md-select>
-                    <!--<span class="selectLabel">Cost:</span>-->
-                    <md-select class="selectFilter" placeholder="Cost" ng-model="costFilter" ng-change="filterDataNToggle();">
-                        <md-option ng-value="cost.name" ng-repeat="cost in costs">{{cost.name}}</md-option>
-                    </md-select>
-                    <md-input-container>
-                        <label>Search...</label>
-                        <input ng-model="searchText" ng-enter="toggleSidenav()">
-                    </md-input-container>
-                    <div layout="row">
-                        <div flex offset="65">
-                            <md-button class="md-raised md-primary resetButton" ng-click="resetFiltersNToggle();">Reset</md-button>
-                        </div>
+            <div layout="column" id="filterBar" hide show-gt-md>
+                <!--<span class="selectLabel">Region:</span>-->
+                <md-select placeholder="Region" ng-model="regionFilter" ng-change="filterData();">
+                    <md-option ng-value="region" ng-repeat="region in regions">{{region}}</md-option>
+                </md-select>
+                <!--<span class="selectLabel">Family:</span>-->
+                <md-select class="selectFilter" placeholder="Family" ng-model="familyFilter" ng-change="filterData();">
+                    <md-option ng-value="family" ng-repeat="family in families">{{family}}</md-option>
+                </md-select>
+                <!--<span class="selectLabel">Cost:</span>-->
+                <md-select class="selectFilter" placeholder="Cost" ng-model="costFilter" ng-change="filterData();">
+                    <md-option ng-value="cost.name" ng-repeat="cost in costs">{{cost.name}}</md-option>
+                </md-select>
+                <md-input-container>
+                    <label>Search...</label>
+                    <input ng-model="searchText" ng-enter="toggleSidenav()">
+                </md-input-container>
+                <div layout="row">
+                    <div flex offset="65">
+                        <md-button class="md-raised md-primary resetButton" ng-click="resetFilters();">Reset</md-button>
                     </div>
                 </div>
+                <input type="hidden" id="ismobile" value="false" />
+            </div>
+            <div layout="column" id="filterBar" hide-gt-md ng-show="user">
+                <!--<span class="selectLabel">Region:</span>-->
+                <md-select placeholder="Region" ng-model="regionFilter" ng-change="filterDataNToggle();">
+                    <md-option ng-value="region" ng-repeat="region in regions">{{region}}</md-option>
+                </md-select>
+                <!--<span class="selectLabel">Family:</span>-->
+                <md-select class="selectFilter" placeholder="Family" ng-model="familyFilter" ng-change="filterDataNToggle();">
+                    <md-option ng-value="family" ng-repeat="family in families">{{family}}</md-option>
+                </md-select>
+                <!--<span class="selectLabel">Cost:</span>-->
+                <md-select class="selectFilter" placeholder="Cost" ng-model="costFilter" ng-change="filterDataNToggle();">
+                    <md-option ng-value="cost.name" ng-repeat="cost in costs">{{cost.name}}</md-option>
+                </md-select>
+                <md-input-container>
+                    <label>Search...</label>
+                    <input ng-model="searchText" ng-enter="toggleSidenav()">
+                </md-input-container>
+                <div layout="row">
+                    <div flex offset="65">
+                        <md-button class="md-raised md-primary resetButton" ng-click="resetFiltersNToggle();">Reset</md-button>
+                    </div>
+                </div>
+                <input type="hidden" id="ismobile-md" value="true" />
+            </div>
             <!--</form>-->
         </md-content>
     </md-sidenav>
@@ -103,10 +149,12 @@
                     </tbody>
                 </table>
             </div>
-            <div class='md-caption' layout-margin>This site was created out of inspiration of <a target="_blank" href="http://ec2instances.info">ec2instances.info</a>.
-                It was started by <a target="_blank" href="mailto:vadim@doit-intl.com">Vadim Solovey</a>,
-                contributed to by <a target="_blank" href="mailto:daniel@doit-intl.com">Daniel Rivkin</a>, is hosted on Google AppEngine, and awaits your improvements on
-                <a target="_blank" href="https://github.com/doitintl/gceinstances">GitHub</a>.</div>
+            <section class="actions" layout="row" layout-align="end center">
+                <p>This site was created out of inspiration of <a target="_blank" href="http://ec2instances.info">ec2instances.info</a>.
+                    It was started by <a target="_blank" href="mailto:vadim@doit-intl.com">Vadim Solovey</a>,
+                    contributed to by <a target="_blank" href="mailto:daniel@doit-intl.com">Daniel Rivkin</a>, is hosted on Google AppEngine, and awaits your improvements on
+                    <a target="_blank" href="https://github.com/doitintl/gceinstances">GitHub</a>.</p>
+            </section>
         </md-content>
     </section>
 </section>

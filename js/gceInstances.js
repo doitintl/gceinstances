@@ -2,9 +2,10 @@
  * Created by danielrivkin on 6/1/15.
  */
 
-var app = angular.module('app', ['ngMaterial']);
+var app = angular.module('app', ['ngMaterial', 'ng.deviceDetector']);
 
-app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filter', function ($scope, $http, $window, $mdSidenav, $filter) {
+app.controller('Controller', ['$scope', '$http', "deviceDetector", '$mdSidenav', '$filter',
+    function ($scope, $http, deviceDetector, $mdSidenav, $filter) {
 
     var filteredDataTemp;
 
@@ -42,7 +43,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
     $scope.regionFilter = 'US';
 
     $scope.sort = {
-        column: 'instance_type',
+        column: 'vCPU',
         descending: false
     };
 
@@ -152,14 +153,20 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
         $scope.toggleSidenav();
     }
 
-    $scope.resetFiltersNToggle = function() {
+    $scope.resetFilters = function() {
 
         $scope.familyFilter = $scope.families[0];
         $scope.costFilter = $scope.costs[0].name;
         $scope.regionFilter = 'US';
         $scope.searchText = '';
 
-        $scope.filterDataNToggle();
+        $scope.filterData();
+    }
+
+    $scope.resetFiltersNToggle = function() {
+
+        $scope.resetFilters();
+        $scope.toggleSidenav();
     }
 
     $scope.selectedCls = function(column) {
@@ -205,6 +212,12 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
         $scope.getAllRegionsNFamilies();
 
+        //if ($scope.isMobile === 'false') {
+        if (!deviceDetector.isMobile()) {
+            $scope.toggleSidenav();
+        }
+        //console.log(document.getElementById("ismobile").value);
+
         $scope.familyFilter = $scope.families[0];
         $scope.costFilter = $scope.costs[0].name;
 
@@ -212,7 +225,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
         angular.forEach($scope.head, function(name, column) {
 
             $scope.sortOrder[column] = 'fa-angle-double-up';
-            if (column === 'instance_type') {
+            if (column === $scope.sort.column) {
                 $scope.sortOrder[column] += ' activeColumn';
             } else {
                 $scope.sortOrder[column] += ' passiveColumn';
