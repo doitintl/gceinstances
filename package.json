@@ -1,0 +1,31 @@
+{
+  "name": "gceinstances.info",
+  "private": true,
+  "version": "0.1.5",
+  "description": "gceinstances.info",
+  "keywords": [
+    "Google Compute Engine",
+    "Google Cloud Platform",
+    "DoIT"
+  ],
+  "dependencies": {
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-sync": "*"
+  },
+  "scripts": {
+  },
+  "main": "js/gceInstances.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doitintl/gceinstances.git"
+  },
+  "authors": [
+    "Vadim Solovey - vadim@doit-intl.com"
+  ]
+}
