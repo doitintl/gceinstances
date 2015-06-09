@@ -25,8 +25,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
         "instance_type": "Name",
         "vCPU": "vCPU",
         "memory": "Memory",
-        "linux": "Linux",
-        "windows": "Windows"
+        "linux": "Linux"
     };
 
     $scope.costs = [ {name:'Hourly', 'mult': 1},
@@ -40,7 +39,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
     $scope.families = ['All'];
 
-    $scope.selRegion = 'us';
+    $scope.regionFilter = 'US';
 
     $scope.sort = {
         column: 'instance_type',
@@ -71,6 +70,41 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
             if ($scope.families.indexOf(instance.family) === -1) { $scope.families = $scope.families.concat(instance.family); }
         });
+        angular.forEach($scope.regions, function(region, i) {
+            $scope.regions[i] = region.toUpperCase();
+        });
+    }
+
+    $scope.calulatePrice = function(os, instance, price) {
+
+        //var calcPrice = price;
+
+        if ($scope.costFilter === 'Monthly' || $scope.costFilter === 'Anually') {
+            if (os === 'linux') {
+                price *= 0.7;
+                //console.log($scope.costFilter + ' ' + calcPrice);
+            }
+            else if (os === 'windows') {
+                if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
+                    price = (price - 0.02) * 0.7 + 0.02;
+                } else {
+                    price = (price - 0.04 * instance.vCPU) * 0.7 +  0.04 * instance.vCPU;
+                }
+            } else if (os === 'suse') {
+                if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
+                    price = (price - 0.02) * 0.7 + 0.02;
+                } else {
+                    price = (price - 0.11) * 0.7 +  0.11;
+                }
+            } else if (os === 'rhel') {
+                if (instance.vCPU < 8) {
+                    price = (price - 0.06) * 0.7 + 0.06;
+                } else {
+                    price = (price - 0.13) * 0.7 + 0.13;
+                }
+            }
+        }
+        return price;
     }
 
     $scope.filterData = function() {
@@ -86,7 +120,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
                 angular.forEach(instance.pricing, function(obj, iRegion) {
 
-                    if (iRegion === $scope.regionFilter) {
+                    if (iRegion.toUpperCase() === $scope.regionFilter) {
 
                         angular.copy(obj, filteredPricing);
 
@@ -97,7 +131,28 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
                                 if (cost.name === $scope.costFilter) { mult = cost.mult; }
                             });
                             angular.forEach(filteredPricing, function(price, os) {
-                                instance[os] = parseFloat($filter('number')(filteredPricing[os]*mult, 3));
+                                //var calcPrice = price;
+                                //if ($scope.costFilter === 'Monthly' || $scope.costFilter === 'Anually') {
+                                //    if (os === 'linux') {
+                                //        calcPrice *= 0.7;
+                                //        console.log($scope.costFilter + ' ' + calcPrice);
+                                //    }
+                                //    else if (os === 'windows') {
+                                //        if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
+                                //            calcPrice = (calcPrice - 0.02) * 0.7 + 0.02;
+                                //        } else {
+                                //            calcPrice = (calcPrice - 0.04 * instance.vCPU) * 0.7 +  0.04 * instance.vCPU;
+                                //        }
+                                //    } else if (os === 'suse') {
+                                //        if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
+                                //            calcPrice = (calcPrice - 0.02) * 0.7 + 0.02;
+                                //        } else {
+                                //            calcPrice = (calcPrice - 0.04 * instance.vCPU) * 0.7 +  0.04 * instance.vCPU;
+                                //        }
+                                //    }
+                                //}
+                                price = $scope.calulatePrice(os, instance, price);
+                                instance[os] = parseFloat($filter('number')(price*mult, 3).replace(',', ''));
                             });
                         }
                     }
@@ -158,7 +213,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
         $scope.getAllRegionsNFamilies();
 
-        $scope.regionFilter = 'us';
+        //$scope.regionFilter = $scope.selRegion;
         $scope.familyFilter = $scope.families[0];
         $scope.costFilter = $scope.costs[0].name;
 
