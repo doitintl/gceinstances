@@ -1,9 +1,10 @@
 .md-select-label {
     padding-top:0;
+    width: 256px;
 }
 
 .selectFilter {
-    margin-top:30px;
+    /*margin-top:30px;*/
 }
 
 #filterBar {
@@ -43,7 +44,6 @@ md-sidenav.md-locked-open {
 
 section#allContent {
     min-height:100%;
-
 }
 
 .md-caption {
@@ -56,12 +56,12 @@ button.resetButton {
     margin-left:0;
 }
 
-section.actions {
+section.footer {
     position: fixed;
     bottom: 52px;
     right: 0;
     z-index: 100;
-    padding: 14px 24px 1em 0;
+    padding: 14px 24px 1em 24px;
     width: 100%;
     background-color: white;
     border-top: 1px solid rgba(0,0,0,0.12);
@@ -101,15 +101,14 @@ html {
 body {
     font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
     font-style: normal;
-    font-weight: 300;
-    font-size: 1.1rem;
-    letter-spacing: 0.01rem;
+    /*font-weight: 300;*/
+    font-size: 1.35rem;
+    /*letter-spacing: 0.01rem;*/
     color: #212121;
     /*padding: 0 16px 0 16px;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-
 }
 
 #demo {

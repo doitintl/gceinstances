@@ -5,7 +5,7 @@
     <title>GCEinstances.info</title>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="gceInstances.css">
+    <link rel="stylesheet" href="css/gceInstances.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
@@ -119,7 +119,7 @@
             </div>
         </md-toolbar>
 
-        <md-content id="data" flex>
+        <md-content id="data" style="padding-right: 24px;" flex>
             <div class="table-responsive-vertical shadow-z-1">
                 <!-- Table starts here -->
                 <table id="table" class="table table-mc-white table-hover table-bordered">
@@ -149,11 +149,12 @@
                     </tbody>
                 </table>
             </div>
-            <section class="actions" layout="row" layout-align="end center">
+            <section class="footer" layout="row" layout-align="end center">
                 <p>This site was created out of inspiration of <a target="_blank" href="http://ec2instances.info">ec2instances.info</a>.
                     It was started by <a target="_blank" href="mailto:vadim@doit-intl.com">Vadim Solovey</a>,
-                    contributed to by <a target="_blank" href="mailto:daniel@doit-intl.com">Daniel Rivkin</a>, is hosted on Google AppEngine, and awaits your improvements on
-                    <a target="_blank" href="https://github.com/doitintl/gceinstances">GitHub</a>.</p>
+                    contributed to by <a target="_blank" href="mailto:daniel@doit-intl.com">Daniel Rivkin</a>, and hosted on Google AppEngine.
+                    Maintained by <a target="_blank" href="http://doit-intl.com">DoIT International</a>, Google Premier Partner.
+                </p>
             </section>
         </md-content>
     </section>
