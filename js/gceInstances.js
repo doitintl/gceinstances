@@ -57,8 +57,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
     $scope.centerColomnHead = [];
 
     $scope.toggleSidenav = function() {
-            $mdSidenav('left').toggle();
-            //$scope.user = !$scope.user;
+        $mdSidenav('left').toggle();
     }
 
     $scope.getAllRegionsNFamilies = function() {
@@ -77,12 +76,9 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
     $scope.calulatePrice = function(os, instance, price) {
 
-        //var calcPrice = price;
-
         if ($scope.costFilter === 'Monthly' || $scope.costFilter === 'Anually') {
             if (os === 'linux') {
                 price *= 0.7;
-                //console.log($scope.costFilter + ' ' + calcPrice);
             }
             else if (os === 'windows') {
                 if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
@@ -131,26 +127,6 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
                                 if (cost.name === $scope.costFilter) { mult = cost.mult; }
                             });
                             angular.forEach(filteredPricing, function(price, os) {
-                                //var calcPrice = price;
-                                //if ($scope.costFilter === 'Monthly' || $scope.costFilter === 'Anually') {
-                                //    if (os === 'linux') {
-                                //        calcPrice *= 0.7;
-                                //        console.log($scope.costFilter + ' ' + calcPrice);
-                                //    }
-                                //    else if (os === 'windows') {
-                                //        if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
-                                //            calcPrice = (calcPrice - 0.02) * 0.7 + 0.02;
-                                //        } else {
-                                //            calcPrice = (calcPrice - 0.04 * instance.vCPU) * 0.7 +  0.04 * instance.vCPU;
-                                //        }
-                                //    } else if (os === 'suse') {
-                                //        if (instance.instance_type === 'f1-micro' || instance.instance_type === 'g1-small') {
-                                //            calcPrice = (calcPrice - 0.02) * 0.7 + 0.02;
-                                //        } else {
-                                //            calcPrice = (calcPrice - 0.04 * instance.vCPU) * 0.7 +  0.04 * instance.vCPU;
-                                //        }
-                                //    }
-                                //}
                                 price = $scope.calulatePrice(os, instance, price);
                                 instance[os] = parseFloat($filter('number')(price*mult, 3).replace(',', ''));
                             });
@@ -168,6 +144,22 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
         $scope.orderByFunc($scope.sort.column);
         $scope.sortChanged = true;
 
+    }
+
+    $scope.filterDataNToggle = function() {
+
+        $scope.filterData();
+        $scope.toggleSidenav();
+    }
+
+    $scope.resetFiltersNToggle = function() {
+
+        $scope.familyFilter = $scope.families[0];
+        $scope.costFilter = $scope.costs[0].name;
+        $scope.regionFilter = 'US';
+        $scope.searchText = '';
+
+        $scope.filterDataNToggle();
     }
 
     $scope.selectedCls = function(column) {
@@ -213,7 +205,6 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
         $scope.getAllRegionsNFamilies();
 
-        //$scope.regionFilter = $scope.selRegion;
         $scope.familyFilter = $scope.families[0];
         $scope.costFilter = $scope.costs[0].name;
 
@@ -234,4 +225,17 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
 
     });
 
-}]);
+}])
+.directive('ngEnter', function() {
+    return function(scope, element, attrs) {
+        element.bind("keydown keypress", function(event) {
+            if(event.which === 13) {
+                scope.$apply(function(){
+                    scope.$eval(attrs.ngEnter, {'event': event});
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
