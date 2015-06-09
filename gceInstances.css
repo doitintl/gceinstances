@@ -176,8 +176,7 @@ body {
     color:#999999;
     overflow: hidden;
     font-weight:bold;
-    white-space: pre-line;
-    padding-top:0.8em;
+
 }
 .table > thead > tr > th:focus {
     outline:none;
@@ -242,5 +241,9 @@ body {
 
     md-content#data {
         padding: 25px 5px 25px 5px;
+    }
+    .table > thead > tr > th {
+        white-space: pre-line;
+        padding-top: 0.8em;
     }
 }
