@@ -24,7 +24,7 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
     $scope.headMobile = {
         "instance_type": "Name",
         "vCPU": "vCPU",
-        "memory": "Memory",
+        "memory": "Mem",
         "linux": "Linux"
     };
 
@@ -219,8 +219,10 @@ app.controller('Controller', ['$scope', '$http', '$window', '$mdSidenav', '$filt
             }
 
             if (column === 'vCPU' || column === 'memory' || column === 'GECU') {
-                $scope.centerColomnHead[column] = "centered";
+                $scope.centerColomnHead[column] = "centered verySmallColumn";
             }
+            if (column === 'linux') { $scope.centerColomnHead[column] = "smallColumn"; }
+            //if (column === 'memory') { $scope.centerColomnHead[column] = "centered"; }
         });
 
     });

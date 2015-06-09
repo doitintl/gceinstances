@@ -246,4 +246,13 @@ body {
         white-space: pre-line;
         padding-top: 0.8em;
     }
+
+    .table > tbody > tr > td.smallColumn,
+    .table > thead > tr > th.smallColumn {
+        max-width:150px;
+    }
+    .table > tbody > tr > td.verySmallColumn,
+    .table > thead > tr > th.verySmallColumn {
+        max-width:120px;
+    }
 }

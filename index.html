@@ -91,10 +91,10 @@
                         <tr ng-repeat="row in filteredData | filter:searchText">
                             <td>{{row.instance_type}}</td>
                             <td hide show-gt-md>{{row.family}}</td>
-                            <td class="centered">{{row.vCPU}}</td>
-                            <td class="centered">{{row.memory}}</td>
+                            <td class="centered verySmallColumn">{{row.vCPU}}</td>
+                            <td class="centered verySmallColumn">{{row.memory}}</td>
                             <td hide show-gt-md class="centered">{{row.GECU}}</td>
-                            <td>${{row.linux}}&nbsp;<span class='md-caption' hide show-gt-md>{{costFilter}}</span></td>
+                            <td class="smallColumn">${{row.linux}}&nbsp;<span class='md-caption' hide show-gt-md>{{costFilter}}</span></td>
                             <td hide show-gt-md >${{row.windows}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
                             <td hide show-gt-md>${{row.suse}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
                             <td hide show-gt-md>${{row.rhel}}&nbsp;<span class='md-caption'>{{costFilter}}</span></td>
@@ -104,7 +104,7 @@
                 </table>
             </div>
             <div class='md-caption' layout-margin>This site was created out of inspiration of <a target="_blank" href="http://ec2instances.info">ec2instances.info</a>.
-                It was started by <a target="_blank" href="mailto:vadim@doit-intl.com">Vadim Solovey</a> (mailto: vadim@doit-intl.com),
+                It was started by <a target="_blank" href="mailto:vadim@doit-intl.com">Vadim Solovey</a>,
                 contributed to by <a target="_blank" href="mailto:daniel@doit-intl.com">Daniel Rivkin</a>, is hosted on Google AppEngine, and awaits your improvements on
                 <a target="_blank" href="https://github.com/doitintl/gceinstances">GitHub</a>.</div>
         </md-content>
