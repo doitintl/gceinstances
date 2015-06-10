@@ -7,6 +7,10 @@ handlers:
   static_files: index.html
   upload: index.html
 
+- url: /instances.json
+  static_files: instances.json
+  upload: instances.json
+
 - url: /css
   static_dir: css
 
@@ -23,7 +27,7 @@ handlers:
 
 - url: /bower_components
   static_dir: bower_components
-  mime_type: application/octet-stream
+  #mime_type: application/octet-stream
 
 skip_files:
 - ^(.*/)?\.jade$
