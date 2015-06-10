@@ -1,5 +1,5 @@
 # gceinstances
-static/bower_components
+bower_components
 .idea/
 
 # Byte-compiled / optimized / DLL files
