@@ -25,8 +25,8 @@
     "url": "https://github.com/doitintl/gceinstances.git"
   },
   "authors": [
-    "Vadim Solovey - vadim@doit-intl.com",
-    "danielrivkin <daniel@doit-intl.com>"
+    "Vadim Solovey <vadim@doit-intl.com>",
+    "Daniel Rivkin <daniel@doit-intl.com>"
   ],
   "bugs": {
     "url": "https://github.com/doitintl/gceinstances/issues"

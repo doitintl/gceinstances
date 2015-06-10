@@ -19,7 +19,6 @@
     "commit": "5f7de8ced18d4663d7a90caecf620fc1f8a66568"
   },
   "_source": "git://github.com/angular/bower-material.git",
-  "_target": "~0.9.8",
-  "_originalSource": "angular-material",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "angular-material"
 }

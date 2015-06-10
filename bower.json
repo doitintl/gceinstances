@@ -1,0 +1,26 @@
+{
+  "name": "gceinstances",
+  "version": "0.0.1",
+  "homepage": "gceinstances.info",
+  "authors": [
+    "Vadim Solovey <vadim@doit-intl.com>"
+  ],
+  "private": true,
+  "description": "gceinstances.info",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+    "dependencies": {
+    "angular":"latest",
+    "angular-aria":"latest",
+    "angular-material":"latest",
+    "angular-animate":"latest",
+    "re-tree":"latest",
+    "ng-device-detector":"latest"
+  }
+}
