@@ -206,7 +206,7 @@ app.controller('Controller', ['$scope', '$http', "deviceDetector", '$mdSidenav',
 
     }
 
-    $http.get('scraper/instances.json').success (function(data){
+    $http.get('instances.json').success (function(data){
 
         $scope.allData = data;
 

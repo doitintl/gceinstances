@@ -4,29 +4,25 @@ threadsafe: false
 
 handlers:
 - url: /
-  static_files: static/index.html
-  upload: static/index.html
-
-- url: /instances.json
-  static_files: static/instances.json
-  upload: static/instances.json
+  static_files: index.html
+  upload: index.html
 
 - url: /css
-  static_dir: static/css
+  static_dir: css
 
 - url: /js
-  static_dir: static/js
+  static_dir: js
   mime_type: application/octet-stream
 
 - url: /favicon.ico
-  static_files: static/favicon.ico
-  upload: static/favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
 
 - url: /images
-  static_dir: static/images
+  static_dir: images
 
 - url: /bower_components
-  static_dir: static/bower_components
+  static_dir: bower_components
   mime_type: application/octet-stream
 
 skip_files:
