@@ -1,7 +1,7 @@
 {
   "name": "gceinstances.info",
   "private": true,
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "gceinstances.info",
   "keywords": [
     "Google Compute Engine",
@@ -18,14 +18,20 @@
     "grunt-contrib-watch": "*",
     "grunt-sync": "*"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "main": "js/gceInstances.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/doitintl/gceinstances.git"
   },
   "authors": [
-    "Vadim Solovey - vadim@doit-intl.com"
-  ]
+    "Vadim Solovey - vadim@doit-intl.com",
+    "danielrivkin <daniel@doit-intl.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/doitintl/gceinstances/issues"
+  },
+  "homepage": "https://github.com/doitintl/gceinstances",
+  "author": "Vadim Solovey - vadim@doit-intl.com"
+  "license": "ISC"
 }
