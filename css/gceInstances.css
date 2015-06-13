@@ -61,7 +61,7 @@ section.footer {
     bottom: 52px;
     right: 0;
     z-index: 100;
-    padding: 14px 24px 1em 24px;
+    padding: 0px 24px 1em 24px;
     width: 100%;
     background-color: white;
     border-top: 1px solid rgba(0,0,0,0.12);
@@ -102,7 +102,7 @@ body {
     font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
     font-style: normal;
     /*font-weight: 300;*/
-    font-size: 1.35rem;
+    font-size: 1.15rem;
     /*letter-spacing: 0.01rem;*/
     color: #212121;
     /*padding: 0 16px 0 16px;*/
@@ -144,6 +144,7 @@ body {
     max-width: 100%;
     margin-bottom: 2rem;
     background-color: #ffffff;
+    padding-bottom: 25px;
 }
 /*.table > thead > tr,*/
 /*.table > tbody > tr,*/
