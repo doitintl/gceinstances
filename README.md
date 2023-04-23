@@ -1,4 +1,6 @@
-# gceinstances.info
+ 🚨 PLEASE USE  https://gcpinstances.info // https://github.com/doitintl/gcpinstances.info
+
+# gceinstances.info (DEPRECATED) 
 Inspired by ec2instances.info, this is a summary page for Google Compute Engine instances
 
 # Implementation
